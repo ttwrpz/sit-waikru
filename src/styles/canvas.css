@@ -1,0 +1,118 @@
+.garland-canvas {
+    background: linear-gradient(135deg, #f8faff 0%, #f0f4ff 50%, #e8f2ff 100%);
+    border: 3px dashed #cbd5e0;
+    border-radius: 25px;
+    position: relative;
+    transition: all 0.3s ease;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+}
+
+@supports not (aspect-ratio: 16 / 9) {
+    .garland-canvas {
+        height: 0;
+        padding-bottom: 56.25%;
+    }
+
+    .garland-canvas > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.garland-canvas.drag-active {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #ebf4ff, #e6fffa, #fef7ff);
+    box-shadow: inset 0 0 30px rgba(102, 126, 234, 0.3);
+    transform: scale(1.01);
+}
+
+.placed-flower {
+    position: absolute;
+    cursor: move;
+    transition: transform 0.2s ease;
+    z-index: 10;
+    user-select: none;
+    filter: drop-shadow(3px 3px 8px rgba(0, 0, 0, 0.2));
+    touch-action: none;
+}
+
+.placed-flower:hover {
+    transform: scale(1.15);
+    z-index: 20;
+}
+
+.placed-flower.dragging {
+    transform: scale(1.2);
+    z-index: 30;
+    opacity: 0.9;
+}
+
+.flower-controls {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(45, 55, 72, 0.95);
+    border-radius: 15px;
+    padding: 0.3rem;
+    display: none;
+    gap: 0.2rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.placed-flower:hover .flower-controls {
+    display: flex;
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+    transition-delay: 0.2s;
+}
+
+.flower-controls:hover {
+    display: flex !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.flower-seed {
+    transition: all 0.3s ease;
+}
+
+.flower-seed:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.flower-seed:active {
+    transform: scale(0.95);
+}

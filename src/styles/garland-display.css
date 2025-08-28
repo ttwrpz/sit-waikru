@@ -1,0 +1,93 @@
+.message-garland {
+    background: linear-gradient(135deg, #f8faff, #f0f4ff, #e8f2ff);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(102, 126, 234, 0.1);
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+}
+
+@supports not (aspect-ratio: 16 / 9) {
+    .message-garland {
+        height: 0;
+        padding-bottom: 56.25%;
+        padding-top: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .message-garland > * {
+        position: absolute;
+        top: 20px;
+        left: 15px;
+        right: 15px;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .message-garland {
+        padding: 12px;
+    }
+
+    @supports not (aspect-ratio: 16 / 9) {
+        .message-garland {
+            padding-top: 16px;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .message-garland > * {
+            top: 16px;
+            left: 12px;
+            right: 12px;
+            bottom: 16px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .message-garland {
+        padding: 10px;
+    }
+
+    @supports not (aspect-ratio: 16 / 9) {
+        .message-garland {
+            padding-top: 14px;
+            padding-left: 10px;
+            padding-right: 14px;
+        }
+
+        .message-garland > * {
+            top: 14px;
+            left: 10px;
+            right: 14px;
+            bottom: 14px;
+        }
+    }
+}
+
+.garland-flower {
+    position: absolute;
+    transition: all 0.3s ease;
+    animation: flower-bob 3s ease-in-out infinite;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.1));
+    z-index: 10;
+    user-select: none;
+}
+
+.garland-flower.flip {
+    animation: flower-bob-flip 3s ease-in-out infinite;
+}
+
+.garland-flower:nth-child(even) {
+    animation-delay: -1s;
+}
+
+.garland-flower:nth-child(3n) {
+    animation-delay: -2s;
+}
